@@ -13,6 +13,7 @@ const Lodo = () => {
     const navigate = useNavigate();
     const [images, setImages] = useState([]);
     const [defaultPrompt, setDefaultPrompt] = useState('');
+    const [promptImageURL, setPromptImageURL] = useState('');
     const UNSPLASH_ACCESS_KEY = 'FNxL47px-8y7SqgCmvjzVcz-73aUWYoleL3L9xg9h7s';
     const email = localStorage.getItem("user_email");
 
@@ -81,6 +82,7 @@ const Lodo = () => {
             const selectedPromptImage = results[randomPromptIndex].urls.small;
 
             console.log(`✅ Selected prompt image (index ${randomPromptIndex}):`, selectedPromptImage);
+            setPromptImageURL(selectedPromptImage); // 🔐 Save selected prompt image URL
 
             const randomResponse = await fetch(
                 `https://api.unsplash.com/photos/random?count=11`,
@@ -94,6 +96,7 @@ const Lodo = () => {
             const randomData = await randomResponse.json();
             let randomImages = randomData.map(image => image.urls.small);
 
+            // Insert the prompt image at a random position
             const randomIndex = Math.floor(Math.random() * 12);
             randomImages.splice(randomIndex, 0, selectedPromptImage);
 
@@ -101,6 +104,24 @@ const Lodo = () => {
         } catch (error) {
             console.error("❌ Error generating images:", error);
             toast.error("Error generating images.");
+        }
+    };
+
+    const handleImageClick = (url) => {
+        if (!promptImageURL) return;
+
+        if (url === promptImageURL) {
+            toast.success("🎉 Yesss! Correct image!", {
+                position: "top-center",
+                autoClose: 2000,
+                theme: "colored"
+            });
+        } else {
+            toast.error("🚫 Nooo! Wrong image!", {
+                position: "top-center",
+                autoClose: 2000,
+                theme: "colored"
+            });
         }
     };
 
@@ -115,7 +136,12 @@ const Lodo = () => {
                     {images.length > 0 ? (
                         images.map((url, index) => (
                             <div className="image" key={index}>
-                                <img style={{ width: '90%' }} src={url} alt={`Generated ${index}`} />
+                                <img
+                                    style={{ width: '90%', cursor: 'pointer' }}
+                                    src={url}
+                                    alt={`Generated ${index}`}
+                                    onClick={() => handleImageClick(url)}
+                                />
                             </div>
                         ))
                     ) : (
