@@ -24,7 +24,7 @@ const Login = () => {
         }
     
         try {
-            const response = await fetch('http://127.0.0.1:5000/send-otp', {
+            const response = await fetch('https://flaskotp.onrender.com/send-otp', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
