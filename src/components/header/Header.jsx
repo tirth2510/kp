@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from "C:/Users/tirth/OneDrive/Desktop/kushal/src/contexts/authcontexts/index"
-import { doSignOut } from "C:/Users/tirth/OneDrive/Desktop/kushal/src/firebase/auth"
+import { useAuth } from "C:/Users/tirth/OneDrive/Desktop/kp/src/contexts/authcontexts/index"
+import { doSignOut } from "C:/Users/tirth/OneDrive/Desktop/kp/src/firebase/auth"
 import './Header.css';
 
 

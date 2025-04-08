@@ -4,8 +4,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Home.css';
-import DefImg from "C:/Users/tirth/OneDrive/Desktop/kushal/src/assets/signup.png";
-import { db } from "C:/Users/tirth/OneDrive/Desktop/kushal/src/firebase/config";
+import DefImg from "C:/Users/tirth/OneDrive/Desktop/kp/src/assets/signup.png";
+import { db } from "C:/Users/tirth/OneDrive/Desktop/kp/src/firebase/config";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 
 const Home = () => {

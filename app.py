@@ -1,10 +1,11 @@
-# app.py
 from flask import Flask, request, jsonify
+from flask_cors import CORS  # ✅ Add this
 from firebase_init import db
 from utils import generate_otp, send_email_otp
 from datetime import datetime, timedelta
 
 app = Flask(__name__)
+CORS(app)  # ✅ This enables CORS for all routes
 
 @app.route("/send-otp", methods=["POST"])
 def send_otp():

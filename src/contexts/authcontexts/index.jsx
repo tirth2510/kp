@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { auth } from "C:/Users/tirth/OneDrive/Desktop/kushal/src/firebase/config.js";
+import { auth } from "C:/Users/tirth/OneDrive/Desktop/kp/src/firebase/config.js";
 // import { GoogleAuthProvider } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
 

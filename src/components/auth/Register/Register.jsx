@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Navigate, Link, useNavigate } from "react-router-dom";
-import { useAuth } from "C:/Users/tirth/OneDrive/Desktop/kushal/src/contexts/authcontexts";
-import { doCreateUserWithEmailAndPassword } from "C:/Users/tirth/OneDrive/Desktop/kushal/src/firebase/auth";
+import { useAuth } from "C:/Users/tirth/OneDrive/Desktop/kp/src/contexts/authcontexts";
+import { doCreateUserWithEmailAndPassword } from "C:/Users/tirth/OneDrive/Desktop/kp/src/firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore"; // Firestore imports
 import "./register.css"; 
 import Header from "../../header/Header";
