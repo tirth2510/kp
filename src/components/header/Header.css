@@ -1,0 +1,30 @@
+/* Style for the navigation bar */
+.nobie {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 50px;
+    background-color: #232323; /* Tailwind's bg-gray-200 equivalent */
+    z-index: 20;
+    padding: 0 1rem;
+}
+
+/* Style for the button and link */
+.nobie button, .nobie a {
+    font-size: 1.2rem; /* Tailwind's text-sm equivalent */
+    color: white;
+    text-decoration: none;
+    margin-left: 1rem;
+}
+
+/* Add hover effect */
+.nobie button:hover, .nobie a:hover {
+    cursor: pointer; /* Tailwind's hover effect for text-blue-600 */
+    transition: 0.3s ease;
+    color: dodgerblue;
+}
