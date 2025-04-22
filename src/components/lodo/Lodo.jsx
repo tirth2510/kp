@@ -7,6 +7,8 @@ import './Lodo.css';
 import DefImg from "C:/Users/tirth/OneDrive/Desktop/kp/src/assets/signup.png";
 import { db } from "C:/Users/tirth/OneDrive/Desktop/kp/src/firebase/config";
 import { doc, getDoc } from "firebase/firestore";
+import CryptoJS from 'crypto-js';
+const SECRET_KEY = "my_super_secret_key_123";
 
 const Lodo = () => {
     const location = useLocation();
@@ -44,7 +46,14 @@ const Lodo = () => {
                 throw new Error(`No document found for email: ${email}`);
             }
 
-            const userPrompt = docSnap.data().prompt;
+            const userPromptEncrypted = docSnap.data().prompt;
+
+const bytes = CryptoJS.AES.decrypt(userPromptEncrypted, SECRET_KEY);
+const decryptedPrompt = bytes.toString(CryptoJS.enc.Utf8);
+
+setDefaultPrompt(decryptedPrompt);
+generateImages(decryptedPrompt);
+
             if (!userPrompt) {
                 throw new Error(`Prompt field missing in document for email: ${email}`);
             }

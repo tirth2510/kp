@@ -7,6 +7,9 @@ import './Home.css';
 import DefImg from "C:/Users/tirth/OneDrive/Desktop/kp/src/assets/signup.png";
 import { db } from "C:/Users/tirth/OneDrive/Desktop/kp/src/firebase/config";
 import { doc, setDoc, getDoc } from "firebase/firestore";
+import CryptoJS from 'crypto-js';
+const SECRET_KEY = "my_super_secret_key_123";  // 🔒 change this in real apps
+
 
 const Home = () => {
     const location = useLocation();
@@ -37,20 +40,25 @@ const email = locationEmail || storedEmail || "guest";
         try {
             const emailDocRef = doc(db, "email", email);
     
-            await setDoc(emailDocRef, { prompt }, { merge: true }); // ✅ store as string
+            // 🔐 Encrypt the prompt using AES
+            const encryptedPrompt = CryptoJS.AES.encrypt(prompt, SECRET_KEY).toString();
     
-            console.log("✅ Prompt saved as string for email:", email);
-            toast.success("Prompt confirmed and saved!", {
+            // 🔥 Save encrypted prompt to Firestore
+            await setDoc(emailDocRef, { prompt: encryptedPrompt }, { merge: true });
+    
+            console.log("✅ Prompt saved encrypted for:", email);
+            toast.success("Prompt saved securely!", {
                 position: "top-center",
                 autoClose: 3000,
                 theme: "colored"
             });
     
         } catch (error) {
-            console.error("❌ Error saving prompt to email doc:", error);
+            console.error("❌ Error saving prompt:", error);
             toast.error("Failed to save prompt.");
         }
     };
+    
     
 
     const imageGenerator = async () => {
